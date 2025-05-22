@@ -1,0 +1,26 @@
+services:
+  redis:
+    image: redis:latest
+    command: ["redis-server", "--requirepass", "${DB_REDIS_PASSWORD}"]
+    environment:
+      REDIS_PASSWORD: ${DB_REDIS_PASSWORD}
+    ports:
+      - "${DB_REDIS_PORT}:6379"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.50'
+  database:
+    image: postgres:alpine
+    container_name: database_pizzaria
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

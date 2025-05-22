@@ -1,0 +1,31 @@
+{
+  "sourceMaps": true,
+  "presets": [
+    "@babel/preset-typescript",
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@middleware": "./src/middleware",
+          "@error": "./src/error",
+          "@security": "./src/security",
+          "@schema": "./src/schema",
+          "@root": "./",
+          "@src": "./src"
+        }
+      }
+    ]
+  ],
+
+  "ignore": ["**/*.test.ts"]
+}
