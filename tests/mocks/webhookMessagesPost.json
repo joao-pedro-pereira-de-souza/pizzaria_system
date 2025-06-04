@@ -1,0 +1,23 @@
+{
+  "response_text": {
+    "from": "5511999999999",
+    "id": "wamid.HBgNNTUxMTk0MTA1MjgyMBUCABIYFjNFQjAzQ0M4NzRENTZDNDQzMjM4RTcA",
+    "timestamp": "1748400975",
+    "text": { "body": "teste" },
+    "type": "text"
+  },
+  "response_button": {
+    "context": {
+      "from": "15551773246",
+      "id": "wamid.HBgNNTUxMTk0MTA1MjgyMBUCABEYEjg3OTUxQUJGMjc1QzUxQ0QxNgA="
+    },
+    "from": "5511999999999",
+    "id": "wamid.HBgNNTUxMTk0MTA1MjgyMBUCABIYFjNFQjAzRjNFNkQ5OTkxMDEyMDZEMEYA",
+    "timestamp": "1748400522",
+    "type": "button",
+    "button": {
+      "payload": "FALAR_COM_ATENDENTE",
+      "text": "Falar com um atendente"
+    }
+  }
+}
