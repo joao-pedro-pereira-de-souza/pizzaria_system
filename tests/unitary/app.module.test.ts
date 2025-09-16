@@ -5,34 +5,38 @@ import {
   beforeEach,
   jest,
   afterEach,
-} from "@jest/globals";
-import cors from "cors";
-import { CreateMockModuleExpress } from "../mocks/index";
+} from '@jest/globals';
+import cors from 'cors';
+import { CreateMockModuleExpress } from '../mocks/index';
+import { CreateMockModuleRedis } from '../mocks/redis.module';
 
-describe("#app", () => {
+
+describe('#app', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
-    jest.mock("prisma/prisma-client", () => {
+    jest.mock('prisma/prisma-client', () => {
       return {
         PrismaClient: jest.fn(),
       };
     });
+
+    CreateMockModuleRedis();
   });
 
   afterEach(() => {
     ClearMocks();
   });
   function ClearMocks() {
-    jest.unmock("express");
-    jest.unmock("cors");
+    jest.unmock('express');
+    jest.unmock('cors');
   }
 
-  it("must have all app configuration parameters NODE_ENV test", async () => {
-    process.env.NODE_ENV = "test";
+  it('must have all app configuration parameters NODE_ENV test', async () => {
+    process.env.NODE_ENV = 'test';
     const spionExpress = CreateMockModuleExpress();
 
-    await import("@root/src/server.module");
+    await import('@root/src/server.module');
 
     expect(spionExpress.use).toHaveBeenNthCalledWith(1, spionExpress.json());
 
@@ -40,12 +44,12 @@ describe("#app", () => {
     expect(receivedUseCors.name).toEqual(cors().name);
   });
 
-  it("must have all app configuration parameters NODE_ENV development", async () => {
-    process.env.NODE_ENV = "development";
-    jest.unmock("express");
+  it('must have all app configuration parameters NODE_ENV development', async () => {
+    process.env.NODE_ENV = 'development';
+    jest.unmock('express');
 
     const spionExpress = CreateMockModuleExpress();
-    await import("@root/src/server.module");
+    await import('@root/src/server.module');
 
     expect(spionExpress.use).toHaveBeenNthCalledWith(1, spionExpress.json());
 

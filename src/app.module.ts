@@ -3,7 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import pino from 'pino';
-import Http, { Server } from 'http';
+import { Server } from 'http';
 
 import { RoutesMiddlewareService } from '@middleware/services/routes.service';
 
@@ -11,7 +11,7 @@ import { RateLimitedMiddlewareService } from '@middleware/services/ratelimit.ser
 import { ErrorMiddlewareService } from '@root/src/middleware/services/error.service';
 
 export class AppServer {
-  constructor(public readonly app: Express, public readonly http: Server) {}
+  constructor(public readonly app: Express) {}
 
   static getInstance() {
     const app = express();
@@ -47,8 +47,7 @@ export class AppServer {
     RoutesMiddlewareService.inicialize(app);
     ErrorMiddlewareService.inicialize(app);
 
-    const http = Http.createServer(app);
-    return new AppServer(app, http);
+    return new AppServer(app);
   }
 
   private static loggerRequest(app: Express) {
@@ -69,7 +68,7 @@ export class AppServer {
     if (process.env.NODE_ENV !== 'test') {
 
       const PORT = Number(process.env.PORT) || 3972;
-      return this.http.listen(PORT, () => this.#listenerCallback());
+      return this.app.listen(PORT, () => this.#listenerCallback());
     }
   }
 }

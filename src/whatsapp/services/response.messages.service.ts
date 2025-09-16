@@ -19,6 +19,7 @@ export class ResponseMessagesServices {
 
     const dataBodyResponse: WhatsappPostMessageDto = {
       ...data,
+      type: 'template',
       messaging_product: 'whatsapp',
       template: {
         name: 'start_message',
@@ -57,11 +58,10 @@ export class ResponseMessagesServices {
       messages: [{ ...dataBodyResponse, sendertype: 'enterprise' }],
     });
 
-    // await WhatsappRepository.sendMessage(dataBodyResponse);
+    await WhatsappRepository.sendMessage(dataBodyResponse);
   }
 
   usecase(messages?: MessagesDto) {
-    if (!messages ) {
-    }
+
   }
 }
