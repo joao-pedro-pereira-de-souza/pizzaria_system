@@ -10,6 +10,7 @@ export function CreateMockModuleRedis() {
         connect: jest.fn(),
         on: jest.fn(),
         quit: jest.fn(),
+        set: jest.fn(()=> 'OK'),
       };
     })
 

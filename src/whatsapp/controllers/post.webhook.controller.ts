@@ -17,7 +17,7 @@ export class PostWebhookController {
       const entry = req.body.entry?.[0];
       const changes = entry?.changes?.[0];
       const message = changes?.value?.messages?.[0];
-      console.log(changes);
+
       if (message && changes?.field === 'messages') {
         const phone_from = message.from;
 

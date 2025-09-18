@@ -1,10 +1,10 @@
 import {
   ResponseText,
   ResponseButton,
-} from "@src/whatsapp/dtos/whatsapp.response.message.dto";
-import { WhatsappPostMessageDto } from "@src/whatsapp/dtos/whatsapp.repository.dto";
+} from '@src/whatsapp/dtos/whatsapp.response.message.dto';
+import { WhatsappPostMessageDto } from '@src/whatsapp/dtos/whatsapp.repository.dto';
 
-type EnumSenderType = "customer" | "enterprise";
+type EnumSenderType = 'customer' | 'enterprise';
 
 export interface ResponseTextOrderTemp extends ResponseText {
   sendertype: EnumSenderType;
